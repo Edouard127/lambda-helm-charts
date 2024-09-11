@@ -1,6 +1,15 @@
 apiVersion: v2
 name: lambda-rpc
 description: A Helm chart for Lambda RPC
+home: https://github.com/Edouard127/lambda-rpc
+keywords:
+  - lambda
+  - rpc
+sources:
+  - https://github.com/Edouard127/lambda-helm-charts
+maintainers:
+  - name: Edouard127
+    email: 46357922+Edouard127@users.noreply.github.com
 
 # A chart can be either an 'application' or a 'library' chart.
 #
