@@ -17,4 +17,3 @@ spec:
   {{- if .Values.service.extraServiceSpec }}
   {{ toYaml .Values.service.extraServiceSpec | nindent 2 }}
   {{- end }}
-  

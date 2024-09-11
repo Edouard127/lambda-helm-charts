@@ -42,7 +42,8 @@ service:
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
-  enabled: true # Ingress is enabled by default
+  # Ingress is enabled by default
+  enabled: true
   className: ""
   annotations: {}
     # kubernetes.io/ingress.class: nginx
@@ -88,7 +89,8 @@ readinessProbe:
 
 #This section is for setting up atoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
-  enabled: true # Autoscaling is enabled by default
+  # Autoscaling is enabled by default
+  enabled: true
   minReplicas: 1
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
@@ -111,16 +113,23 @@ lambdaRpc:
   # Additional rpc container environment variables
   # Values can be either variable values or `valueFrom` yaml
   extraEnv:
-    environment: "release" # Options are: "release", "debug" and "test"
-
-    verbosity: "INFO" # Options are: "DEBUG", "INFO", "WARN" and "ERROR"
-    prettyJson: false # Pretty return JSON
-
-    allowInsecure: false # Allow insecure minecraft accounts to connect
-
-    rateLimit: 5 # Maximum number of requests allowed in the duration
-    rateDuration: 10000 # Time frame in milliseconds in which requests can be made until n is reached
-    rateBurst: 5 # How many requests can be handled simultaneously from one IP
+    # Options are: "release", "debug" and "test"
+    environment: "release"
+    
+    # Options are: "DEBUG", "INFO", "WARN" and "ERROR"
+    verbosity: "INFO"
+    # Pretty return JSON
+    prettyJson: false
+    
+    # Allow insecure minecraft accounts to connect
+    allowInsecure: false
+    
+    # Maximum number of requests allowed in the duration
+    rateLimit: 5
+    # Time frame in milliseconds in which requests can be made until n is reached
+    rateDuration: 10000
+    # How many requests can be handled simultaneously from one IP
+    rateBurst: 5
 
 nodeSelector: {}
 
