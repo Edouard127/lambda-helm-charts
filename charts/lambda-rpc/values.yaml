@@ -11,7 +11,7 @@ image:
   tag: latest
 
 # Kubernetes pod annotations
-# ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/ 
+# ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
 podAnnotations: {}
 # Kubernetes pod labels
 # ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
@@ -34,7 +34,7 @@ service:
   type: ClusterIP
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
   port: 80
-  
+
   # Additional service specs to be defined
   # Fields set here will be added to the end of the Service spec
   # Can include any fields from https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec
@@ -61,11 +61,11 @@ ingress:
 
 resources:
   limits:
-   cpu: 100m
-   memory: 128Mi
+     cpu: 100m
+     memory: 128Mi
   requests:
-   cpu: 100m
-   memory: 128Mi
+     cpu: 100m
+     memory: 128Mi
 
 livenessProbe:
   httpGet:
@@ -76,7 +76,7 @@ livenessProbe:
     timeoutSeconds: 1
     failureThreshold: 3
     successThreshold: 1
-    
+
 readinessProbe:
   httpGet:
     path: /ready
@@ -87,7 +87,7 @@ readinessProbe:
     failureThreshold: 3
     successThreshold: 1
 
-#This section is for setting up atoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
+# This section is for setting up atoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
   # Autoscaling is enabled by default
   enabled: true
@@ -115,15 +115,15 @@ lambdaRpc:
   extraEnv:
     # Options are: "release", "debug" and "test"
     environment: "release"
-    
+
     # Options are: "DEBUG", "INFO", "WARN" and "ERROR"
     verbosity: "INFO"
     # Pretty return JSON
     prettyJson: false
-    
+
     # Allow insecure minecraft accounts to connect
     allowInsecure: false
-    
+
     # Maximum number of requests allowed in the duration
     rateLimit: 5
     # Time frame in milliseconds in which requests can be made until n is reached
