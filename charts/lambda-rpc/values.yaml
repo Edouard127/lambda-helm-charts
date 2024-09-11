@@ -73,9 +73,9 @@ livenessProbe:
     path: /live
     port: http
     initialDelaySeconds: 30
-    periodSeconds: 10
+    periodSeconds: 30
     timeoutSeconds: 1
-    failureThreshold: 3
+    failureThreshold: 20
     successThreshold: 1
 
 readinessProbe:
@@ -83,9 +83,9 @@ readinessProbe:
     path: /ready
     port: http
     initialDelaySeconds: 30
-    periodSeconds: 10
+    periodSeconds: 30
     timeoutSeconds: 1
-    failureThreshold: 3
+    failureThreshold: 20
     successThreshold: 1
 
 # This section is for setting up atoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
