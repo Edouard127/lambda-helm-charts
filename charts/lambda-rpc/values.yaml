@@ -114,7 +114,7 @@ lambdaRpc:
   # Values can be either variable values or `valueFrom` yaml
   extraEnv:
     # Options are: "release", "debug" and "test"
-    environment: "release"
+    environment: release
 
     # Options are: "DEBUG", "INFO", "WARN" and "ERROR"
     verbosity: "INFO"
