@@ -8,7 +8,8 @@ replicaCount: 1
 image:
   repository: edouard127/lambda-rpc
   pullPolicy: IfNotPresent
-  tag: latest
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
 
 # Kubernetes pod annotations
 # ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
