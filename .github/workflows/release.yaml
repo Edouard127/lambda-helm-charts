@@ -21,9 +21,8 @@ jobs:
           helm repo add stable https://charts.helm.sh/stable
 
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.6.0
+        uses: helm/chart-releaser-action@v1.1.0
         with:
-          charts_dir: charts
-          config: cr.yaml
+          charts_repo_url: https://edouard127.github.io/lambda-helm-charts/
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
