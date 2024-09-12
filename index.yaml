@@ -18,6 +18,6 @@ entries:
         - https://github.com/Edouard127/lambda-helm-charts
       type: application
       urls:
-        - https://edouard127.github.io/lambda-helm-charts/
+        - https://github.com/Edouard127/lambda-helm-charts/releases/download/lambda-rpc-1.0.0/lambda-rpc-1.0.0.tgz
       version: 1.0.1
 generated: "2024-09-12T12:32:04.5359132-04:00"
