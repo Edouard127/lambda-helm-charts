@@ -8,10 +8,11 @@ replicaCount: 1
 image:
   repository: edouard127/lambda-rpc
   pullPolicy: IfNotPresent
-  tag: latest
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
 
 # Kubernetes pod annotations
-# ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/ 
+# ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
 podAnnotations: {}
 # Kubernetes pod labels
 # ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
@@ -34,7 +35,7 @@ service:
   type: ClusterIP
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
   port: 80
-  
+
   # Additional service specs to be defined
   # Fields set here will be added to the end of the Service spec
   # Can include any fields from https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec
@@ -42,7 +43,8 @@ service:
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
-  enabled: true # Ingress is enabled by default
+  # Ingress is enabled by default
+  enabled: true
   className: ""
   annotations: {}
     # kubernetes.io/ingress.class: nginx
@@ -58,37 +60,38 @@ ingress:
   #      - chart-example.local
   #  secretName: chart-example-tls
 
-resources:
-  limits:
-   cpu: 100m
-   memory: 128Mi
-  requests:
-   cpu: 100m
-   memory: 128Mi
+resources: {}
+  # limits:
+  #   cpu: 250m
+  #   memory: 100Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 50Mi
 
 livenessProbe:
   httpGet:
     path: /live
     port: http
     initialDelaySeconds: 30
-    periodSeconds: 10
+    periodSeconds: 30
     timeoutSeconds: 1
-    failureThreshold: 3
+    failureThreshold: 20
     successThreshold: 1
-    
+
 readinessProbe:
   httpGet:
     path: /ready
     port: http
     initialDelaySeconds: 30
-    periodSeconds: 10
+    periodSeconds: 30
     timeoutSeconds: 1
-    failureThreshold: 3
+    failureThreshold: 20
     successThreshold: 1
 
-#This section is for setting up atoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
+# This section is for setting up atoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
-  enabled: true # Autoscaling is enabled by default
+  # Autoscaling is enabled by default
+  enabled: true
   minReplicas: 1
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
@@ -111,16 +114,23 @@ lambdaRpc:
   # Additional rpc container environment variables
   # Values can be either variable values or `valueFrom` yaml
   extraEnv:
-    environment: "release" # Options are: "release", "debug" and "test"
+    # Options are: "release", "debug" and "test"
+    environment: release
 
-    verbosity: "INFO" # Options are: "DEBUG", "INFO", "WARN" and "ERROR"
-    prettyJson: false # Pretty return JSON
+    # Options are: "DEBUG", "INFO", "WARN" and "ERROR"
+    verbosity: "INFO"
+    # Pretty return JSON
+    prettyJson: false
 
-    allowInsecure: false # Allow insecure minecraft accounts to connect
+    # Allow insecure minecraft accounts to connect
+    allowInsecure: false
 
-    rateLimit: 5 # Maximum number of requests allowed in the duration
-    rateDuration: 10000 # Time frame in milliseconds in which requests can be made until n is reached
-    rateBurst: 5 # How many requests can be handled simultaneously from one IP
+    # Maximum number of requests allowed in the duration
+    rateLimit: 5
+    # Time frame in milliseconds in which requests can be made until n is reached
+    rateDuration: 10000
+    # How many requests can be handled simultaneously from one IP
+    rateBurst: 5
 
 nodeSelector: {}
 

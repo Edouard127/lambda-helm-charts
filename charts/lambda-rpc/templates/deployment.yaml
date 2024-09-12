@@ -49,7 +49,7 @@ spec:
           env:
             {{- range $key, $value := .Values.lambdaRpc.extraEnv }}
              - name: {{ $key }}
-               value: {{ $value }}
+               value: {{ $value | quote }}
             {{- end }}
       {{- with .Values.volumes }}
       volumes:
