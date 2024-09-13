@@ -60,13 +60,13 @@ ingress:
   #      - chart-example.local
   #  secretName: chart-example-tls
 
-resources: {}
-  # limits:
-  #   cpu: 250m
-  #   memory: 100Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 50Mi
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 50m
+    memory: 64Mi
 
 livenessProbe:
   httpGet:
