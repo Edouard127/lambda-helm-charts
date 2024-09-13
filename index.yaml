@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   lambda-rpc:
     - apiVersion: v2
-      appVersion: 1.0.0
+      appVersion: 1.0.2
       created: "2024-09-12T12:32:04.5385483-04:00"
       description: A Helm chart for Lambda RPC
       digest: 6c65b3298ed81ac98d4661b1d2284433a4825d27010bcfdf03d56a96bab47461
