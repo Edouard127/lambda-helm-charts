@@ -39,4 +39,23 @@ entries:
     urls:
     - https://github.com/Edouard127/lambda-helm-charts/releases/download/lambda-rpc-1.0.2/lambda-rpc-1.0.2.tgz
     version: 1.0.2
-generated: "2024-09-13T14:43:56.819169779Z"
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2024-09-13T15:55:54.42561582Z"
+    description: A Helm chart for Lambda RPC
+    digest: 07f30d3d60cffb3a2ea823240413bdb3daf09cac7c75e0c6ced19deff5891cd6
+    home: https://github.com/Edouard127/lambda-rpc
+    keywords:
+    - lambda
+    - rpc
+    maintainers:
+    - email: 46357922+Edouard127@users.noreply.github.com
+      name: Edouard127
+    name: lambda-rpc
+    sources:
+    - https://github.com/Edouard127/lambda-helm-charts
+    type: application
+    urls:
+    - https://github.com/Edouard127/lambda-helm-charts/releases/download/lambda-rpc-1.0.0/lambda-rpc-1.0.0.tgz
+    version: 1.0.0
+generated: "2024-09-13T15:55:54.425629706Z"
