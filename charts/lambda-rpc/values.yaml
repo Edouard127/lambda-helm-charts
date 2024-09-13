@@ -93,7 +93,7 @@ autoscaling:
   # Autoscaling is enabled by default
   enabled: true
   minReplicas: 1
-  maxReplicas: 100
+  maxReplicas: 10
   targetCPUUtilizationPercentage: 80
   targetMemoryUtilizationPercentage: 80
 
@@ -124,13 +124,6 @@ lambdaRpc:
 
     # Allow insecure minecraft accounts to connect
     allowInsecure: false
-
-    # Maximum number of requests allowed in the duration
-    rateLimit: 5
-    # Time frame in milliseconds in which requests can be made until n is reached
-    rateDuration: 10000
-    # How many requests can be handled simultaneously from one IP
-    rateBurst: 5
 
 nodeSelector: {}
 
