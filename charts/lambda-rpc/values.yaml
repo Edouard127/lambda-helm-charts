@@ -118,7 +118,7 @@ lambdaRpc:
     environment: release
 
     # Options are: "DEBUG", "INFO", "WARN" and "ERROR"
-    verbosity: "INFO"
+    logLevel: "INFO"
     # Pretty return JSON
     prettyJson: false
 
