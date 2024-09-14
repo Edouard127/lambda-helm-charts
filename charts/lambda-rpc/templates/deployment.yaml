@@ -55,14 +55,10 @@ spec:
           command: ["/app/main"]
           args: 
             - "--port={{ .Values.service.port }}"
-            - "--enviroment"
-            - "echo $enviroment"
-            - "--verbosity"
-            - "echo $logLevel"
-            - "--pretty-json"
-            - "echo $prettyJson"
-            - "-allow-insecure"
-            - "echo $allowInsecure"
+            - "--environment=$(enviroment)"
+            - "--verbosity=$(logLevel)"
+            - "--pretty-json=$(prettyJson)"
+            - "-allow-insecure=$(allowInsecure)"
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
