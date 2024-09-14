@@ -55,14 +55,10 @@ spec:
           command: ["/app/main"]
           args: 
             - "--port={{ .Values.service.port }}"
-            - "--environment"
-            - "echo $environment"
-            - "--verbose"
-            - "echo $logLevel"
-            - "--pretty-json"
-            - "echo $prettyJson"
-            - "--allow-insecure"
-            - "echo $allowInsecure"
+            - "--environment={{ .Values.lambdaRpc.extraEnv.environment }}"
+            - "--verbose={{ .Values.lambdaRpc.extraEnv.logLevel }}"
+            - "--pretty-json={{ .Values.lambdaRpc.extraEnv.prettyJson }}"
+            - "--allow-insecure={{ .Values.lambdaRpc.extraEnv.allowInsecure }}"
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
