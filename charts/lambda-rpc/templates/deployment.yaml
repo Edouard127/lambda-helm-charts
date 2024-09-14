@@ -56,7 +56,7 @@ spec:
           args: 
             - "--port={{ .Values.service.port }}"
             - "--environment=$(enviroment)"
-            - "--verbosity=$(logLevel)"
+            - "--verbose=$(logLevel)"
             - "--pretty-json=$(prettyJson)"
             - "-allow-insecure=$(allowInsecure)"
       {{- with .Values.volumes }}
