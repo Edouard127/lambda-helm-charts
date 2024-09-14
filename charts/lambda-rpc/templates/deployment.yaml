@@ -51,6 +51,14 @@ spec:
              - name: {{ $key }}
                value: {{ $value | quote }}
             {{- end }}
+             
+          command: ["/app/main"]
+          args: 
+            - "--port={{ .Values.service.port }}"
+            - "--environment={{ .Values.lambdaRpc.extraEnv.environment }}"
+            - "--verbose={{ .Values.lambdaRpc.extraEnv.logLevel }}"
+            - "--pretty-json={{ .Values.lambdaRpc.extraEnv.prettyJson }}"
+            - "--allow-insecure={{ .Values.lambdaRpc.extraEnv.allowInsecure }}"
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
