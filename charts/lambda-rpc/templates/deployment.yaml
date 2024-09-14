@@ -58,7 +58,7 @@ spec:
             - "--environment=$(enviroment)"
             - "--verbose=$(logLevel)"
             - "--pretty-json=$(prettyJson)"
-            - "-allow-insecure=$(allowInsecure)"
+            - "--allow-insecure=$(allowInsecure)"
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
