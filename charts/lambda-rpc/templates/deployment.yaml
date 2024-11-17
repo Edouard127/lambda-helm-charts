@@ -43,14 +43,12 @@ spec:
           {{- end }}
 
           env:
-            - name: PORT
-              value: {{ .Values.service.port }}
             - name: ENVIRONMENT
-              value: {{ .Values.lambdaApi.extraEnv.environment }}
+              value: {{ .Values.lambdaApi.extraEnv.environment | squote }}
             - name: LOG_LEVEL
-              value: {{ .Values.lambdaApi.extraEnv.logLevel }}
+              value: {{ .Values.lambdaApi.extraEnv.logLevel | squote }}
             - name: ALLOW_INSECURE
-              value: {{ .Values.lambdaApi.extraEnv.allowInsecure }}
+              value: {{ .Values.lambdaApi.extraEnv.allowInsecure | squote }}
              
           command: ["/app/main"]
       {{- with .Values.volumes }}
