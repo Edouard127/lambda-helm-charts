@@ -35,7 +35,6 @@ service:
   type: ClusterIP
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
   port: 80
-  targetPort: 8080
 
   # Additional service specs to be defined
   # Fields set here will be added to the end of the Service spec
