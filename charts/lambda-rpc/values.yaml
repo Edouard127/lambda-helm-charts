@@ -1,12 +1,12 @@
-# Default values for lambda-rpc.
-# ref: https://github.com/Edouard127/lambda-rpc
+# Default values for lambda-api.
+# ref: https://github.com/Edouard127/lambda-api
 
 # This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 replicaCount: 1
 
 # This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
 image:
-  repository: edouard127/lambda-rpc
+  repository: edouard127/lambda-api
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -68,28 +68,6 @@ resources:
     cpu: 50m
     memory: 64Mi
 
-livenessProbe:
-  initialDelaySeconds: 60
-  periodSeconds: 60
-  timeoutSeconds: 2
-  failureThreshold: 5
-  successThreshold: 1
-  httpGet:
-    path: /api/live
-    port: http
-    scheme: HTTP
-
-readinessProbe:
-  initialDelaySeconds: 60
-  periodSeconds: 60
-  timeoutSeconds: 2
-  failureThreshold: 5
-  successThreshold: 1
-  httpGet:
-    path: /api/ready
-    port: http
-    scheme: HTTP
-
 # This section is for setting up atoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
   # Autoscaling is enabled by default
@@ -112,7 +90,7 @@ volumeMounts: []
 #   mountPath: "/etc/foo"
 #   readOnly: true
 
-lambdaRpc:
+lambdaApi:
   # Additional rpc container environment variables
   # Values can be either variable values or `valueFrom` yaml
   extraEnv:
@@ -121,8 +99,6 @@ lambdaRpc:
 
     # Options are: "DEBUG", "INFO", "WARN" and "ERROR"
     logLevel: "INFO"
-    # Pretty return JSON
-    prettyJson: false
 
     # Allow insecure minecraft accounts to connect
     allowInsecure: false
