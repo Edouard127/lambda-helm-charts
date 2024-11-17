@@ -35,10 +35,6 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-          livenessProbe:
-            {{- toYaml .Values.livenessProbe | nindent 12 }}
-          readinessProbe:
-            {{- toYaml .Values.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}
@@ -47,18 +43,16 @@ spec:
           {{- end }}
 
           env:
-            {{- range $key, $value := .Values.lambdaRpc.extraEnv }}
-             - name: {{ $key }}
-               value: {{ $value | quote }}
-            {{- end }}
+            - name: PORT
+              value: {{ .Values.service.port }}
+            - name: ENVIRONMENT
+              value: {{ .Values.lambdaApi.extraEnv.environment }}
+            - name: LOG_LEVEL
+              value: {{ .Values.lambdaApi.extraEnv.logLevel }}
+            - name: ALLOW_INSECURE
+              value: {{ .Values.lambdaApi.extraEnv.allowInsecure }}
              
           command: ["/app/main"]
-          args: 
-            - "--port={{ .Values.service.port }}"
-            - "--environment={{ .Values.lambdaRpc.extraEnv.environment }}"
-            - "--verbose={{ .Values.lambdaRpc.extraEnv.logLevel }}"
-            - "--pretty-json={{ .Values.lambdaRpc.extraEnv.prettyJson }}"
-            - "--allow-insecure={{ .Values.lambdaRpc.extraEnv.allowInsecure }}"
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
@@ -74,8 +68,4 @@ spec:
       {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
-          
-      {{- range $key, $value := .Values.lambdaRpc.extraPodSpec }}
-       {{ $key }}: {{ tpl $value $ }}
       {{- end }}
