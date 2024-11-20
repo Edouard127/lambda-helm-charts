@@ -71,7 +71,7 @@ resources:
 # This section is for setting up atoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
   # Autoscaling is enabled by default
-  enabled: true
+  enabled: false
   minReplicas: 1
   maxReplicas: 10
   targetCPUUtilizationPercentage: 80
@@ -102,6 +102,13 @@ lambdaApi:
 
     # Allow insecure minecraft accounts to connect
     allowInsecure: false
+
+    # Database options
+    database:
+      address: ":6379"
+      username: ""
+      password: ""
+      database: 0
 
 nodeSelector: {}
 
