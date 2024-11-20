@@ -49,6 +49,14 @@ spec:
               value: {{ .Values.lambdaApi.extraEnv.logLevel | squote }}
             - name: ALLOW_INSECURE
               value: {{ .Values.lambdaApi.extraEnv.allowInsecure | squote }}
+            - name: DB_ADDR
+              value: {{ .Values.lambdaApi.extraEnv.database.address | squote }}
+            - name: DB_USERNAME
+              value: {{ .Values.lambdaApi.extraEnv.database.username | squote }}
+            - name: DB_PASSWORD
+              value: {{ .Values.lambdaApi.extraEnv.database.password | squote }}
+            - name: DB_INDEX
+              value: {{ .Values.lambdaApi.extraEnv.database.database | squote }}
              
           command: ["/app/main"]
       {{- with .Values.volumes }}
