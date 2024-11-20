@@ -43,5 +43,4 @@ entries:
     urls:
     - https://github.com/Edouard127/lambda-helm-charts/releases/download/lambda-api-1.0.0/lambda-api-1.0.0.tgz
     version: 1.0.0
-  lambda-rpc: null
 generated: "2024-11-17T20:34:15.102883478Z"
