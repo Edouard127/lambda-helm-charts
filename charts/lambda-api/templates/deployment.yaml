@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "lambda-rpc.fullname" . }}
+  name: {{ include "lambda-api.fullname" . }}
   labels:
-    {{- include "lambda-rpc.labels" . | nindent 4 }}
+    {{- include "lambda-api.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "lambda-rpc.selectorLabels" . | nindent 6 }}
+      {{- include "lambda-api.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "lambda-rpc.labels" . | nindent 8 }}
+        {{- include "lambda-api.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
