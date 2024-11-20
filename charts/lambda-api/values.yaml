@@ -35,18 +35,18 @@ service:
   type: ClusterIP
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
   port: 8080
-  
+
   serviceMonitor:
     # PodMonitor is enabled by default
     enabled: true
-    
+
     # Job label to be selected for the PodMonitor
     # Defaults to the Chart name
     jobLabel: ""
-    
+
     # Interval at which metrics should be scraped
     interval: 30s
-    
+
     # Timeout after which the scrape is ended
     scrapeTimeout: 10s
 
