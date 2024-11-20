@@ -1,0 +1,15 @@
+{{- if .Values.podMonitor.enabled}}
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: {{ include "lambda-api.fullname" . }}
+  labels:
+    {{- include "lambda-api.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "lambda-api.selectorLabels" . | nindent 6 }}
+  podMetricsEndpoints:
+    - port: metrics
+      scheme: http
+{{- end}}

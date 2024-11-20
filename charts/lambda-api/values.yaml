@@ -40,6 +40,10 @@ service:
   # Fields set here will be added to the end of the Service spec
   # Can include any fields from https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec
   extraServiceSpec: {}
+  
+podMonitor:
+  # PodMonitor is enabled by default
+  enabled: true
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
