@@ -35,15 +35,25 @@ service:
   type: ClusterIP
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
   port: 8080
+  
+  serviceMonitor:
+    # PodMonitor is enabled by default
+    enabled: true
+    
+    # Job label to be selected for the PodMonitor
+    # Defaults to the Chart name
+    jobLabel: ""
+    
+    # Interval at which metrics should be scraped
+    interval: 30s
+    
+    # Timeout after which the scrape is ended
+    scrapeTimeout: 10s
 
   # Additional service specs to be defined
   # Fields set here will be added to the end of the Service spec
   # Can include any fields from https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec
   extraServiceSpec: {}
-
-podMonitor:
-  # PodMonitor is enabled by default
-  enabled: true
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
