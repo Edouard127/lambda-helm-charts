@@ -40,7 +40,7 @@ service:
   # Fields set here will be added to the end of the Service spec
   # Can include any fields from https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec
   extraServiceSpec: {}
-  
+
 podMonitor:
   # PodMonitor is enabled by default
   enabled: true
@@ -106,7 +106,7 @@ lambdaApi:
 
     # Allow insecure minecraft accounts to connect
     allowInsecure: false
-    
+
     # Database options
     database:
       address: ":6379"
