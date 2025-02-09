@@ -13,11 +13,6 @@ maintainers:
   - name: Edouard127
     email: 46357922+Edouard127@users.noreply.github.com
 
-dependencies:
-  - name: kube-prometheus-stack
-    version: 69.2.0
-    repository: https://prometheus-community.github.io/helm-charts
-
 # A chart can be either an 'application' or a 'library' chart.
 #
 # Application charts are a collection of templates that can be packaged into versioned archives
