@@ -90,4 +90,29 @@ entries:
     urls:
     - https://github.com/Edouard127/lambda-helm-charts/releases/download/lambda-auth-1.0.1/lambda-auth-1.0.1.tgz
     version: 1.0.1
-generated: "2025-02-09T20:26:14.523293778Z"
+  - apiVersion: v2
+    appVersion: v1.0.0
+    created: "2025-02-09T20:27:33.945502026Z"
+    dependencies:
+    - name: kube-prometheus-stack
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 69.2.0
+    description: A Helm chart for the Lambda Auth server
+    digest: 9413d25761538b6def10ce318dcb046f3d8ddd0dd2ecd92818e0ee1ea65e9e62
+    home: https://github.com/Edouard127/lambda-auth
+    keywords:
+    - lambda-client
+    - lambda client
+    - minecraft
+    - anarchy
+    maintainers:
+    - email: 46357922+Edouard127@users.noreply.github.com
+      name: Edouard127
+    name: lambda-auth
+    sources:
+    - https://github.com/Edouard127/lambda-helm-charts
+    type: application
+    urls:
+    - https://github.com/Edouard127/lambda-helm-charts/releases/download/lambda-auth-1.0.0/lambda-auth-1.0.0.tgz
+    version: 1.0.0
+generated: "2025-02-09T20:27:33.945514048Z"
