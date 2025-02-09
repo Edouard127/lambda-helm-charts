@@ -6,13 +6,13 @@ metadata:
     {{- include "lambda-auth.labels" . | nindent 4 }}
   {{- if .Values.serviceAnnotations }}
   annotations:
-    {{- .Values.serviceAnnotations | nindent 4 }}à
-  {{- end}}
+    {{- toYaml .Values.serviceAnnotations | nindent 4 }}
+  {{- end }}
 spec:
 {{- if .Values.service.dualStack.enabled }}
   ipFamilies: {{ toYaml .Values.service.dualStack.ipFamilies | nindent 4 }}
   ipFamilyPolicy: {{ .Values.service.dualStack.ipFamilyPolicy }}
-{{- end}}
+{{- end }}
 
   type: {{ .Values.service.type }}
 

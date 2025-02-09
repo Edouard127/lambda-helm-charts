@@ -1,0 +1,6 @@
+serviceMonitor:
+  enabled: true
+
+serviceAnnotations:
+  "aa": "bb"
+  "lambda/app": "lambda-auth"
