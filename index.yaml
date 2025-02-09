@@ -3,6 +3,27 @@ entries:
   lambda-api:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2025-02-09T22:47:24.868198362Z"
+    description: A Helm chart for the Lambda Client Web API
+    digest: e34fbcac5d4adcbdb80ab3fe738ed3915cfaea00d8af2319689953058e241bb7
+    home: https://github.com/Edouard127/lambda-api
+    keywords:
+    - lambda-client
+    - lambda client
+    - minecraft
+    - anarchy
+    maintainers:
+    - email: 46357922+Edouard127@users.noreply.github.com
+      name: Edouard127
+    name: lambda-api
+    sources:
+    - https://github.com/Edouard127/lambda-helm-charts
+    type: application
+    urls:
+    - https://github.com/Edouard127/lambda-helm-charts/releases/download/lambda-api-1.0.3/lambda-api-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2024-11-20T22:10:24.731520745Z"
     description: A Helm chart for the Lambda Client Web API
     digest: e76486f21adeb2bc53ec6c8a802633346469bd874b11efe8fc4b78cb6ba6371b
@@ -65,6 +86,27 @@ entries:
     - https://github.com/Edouard127/lambda-helm-charts/releases/download/lambda-api-1.0.0/lambda-api-1.0.0.tgz
     version: 1.0.0
   lambda-auth:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-02-09T22:47:24.95841846Z"
+    description: A Helm chart for the Lambda Auth server
+    digest: b1c8f0d3fd4a08079f097e2613a40c12fc51a73fc7b90b298ce21f342833702e
+    home: https://github.com/Edouard127/lambda-auth
+    keywords:
+    - lambda-client
+    - lambda client
+    - minecraft
+    - anarchy
+    maintainers:
+    - email: 46357922+Edouard127@users.noreply.github.com
+      name: Edouard127
+    name: lambda-auth
+    sources:
+    - https://github.com/Edouard127/lambda-helm-charts
+    type: application
+    urls:
+    - https://github.com/Edouard127/lambda-helm-charts/releases/download/lambda-auth-1.0.3/lambda-auth-1.0.3.tgz
+    version: 1.0.3
   - apiVersion: v2
     appVersion: 1.0.0
     created: "2025-02-09T21:55:08.874532213Z"
@@ -140,4 +182,4 @@ entries:
     urls:
     - https://github.com/Edouard127/lambda-helm-charts/releases/download/lambda-auth-1.0.0/lambda-auth-1.0.0.tgz
     version: 1.0.0
-generated: "2025-02-09T21:55:08.874550487Z"
+generated: "2025-02-09T22:47:24.958451983Z"
