@@ -4,3 +4,6 @@ serviceMonitor:
 serviceAnnotations:
   "aa": "bb"
   "lambda/app": "lambda-auth"
+
+image:
+  tag: "latest"

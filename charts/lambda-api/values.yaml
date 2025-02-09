@@ -18,6 +18,10 @@ podAnnotations: {}
 # ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 podLabels: {}
 
+# This is for setting Kubernetes Annotations to a Service.
+# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+serviceAnnotations: {}
+
 podSecurityContext: {}
   # fsGroup: 2000
 
@@ -31,15 +35,71 @@ securityContext: {}
 
 # This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
 service:
+  # Enables dual-stack connectivity
+  dualStack:
+    enabled: false
+    ipFamilies:
+      - IPv4
+      - IPv6
+    ipFamilyPolicy: PreferDualStack
+
   # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
   type: ClusterIP
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
   port: 80
+  metricsPort: 9100
 
-  # Additional service specs to be defined
-  # Fields set here will be added to the end of the Service spec
-  # Can include any fields from https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec
-  extraServiceSpec: {}
+## Configuration for creating a ServiceMonitor for AlertManager
+serviceMonitor:
+  # Enables the service monitor
+  enabled: false
+
+  ## Scrape interval. If not set, the Prometheus default scrape interval is used.
+  interval: ""
+
+  ## Additional labels
+  additionalLabels: {}
+
+  ## SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.
+  sampleLimit: 0
+
+  ## TargetLimit defines a limit on the number of scraped targets that will be accepted.
+  targetLimit: 0
+
+  ## Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.
+  labelLimit: 0
+
+  ## Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.
+  labelNameLengthLimit: 0
+
+  ## Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.
+  labelValueLengthLimit: 0
+
+  ## scheme: HTTP scheme to use for scraping. Can be used with `tlsConfig` for example if using istio mTLS.
+  scheme: ""
+
+  ## enableHttp2: Whether to enable HTTP2.
+  enableHttp2: true
+
+  ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
+  metricRelabelings: []
+  # - action: keep
+  #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
+  #   sourceLabels: [__name__]
+
+  ## RelabelConfigs to apply to samples before scraping
+  relabelings: []
+  # - sourceLabels: [__meta_kubernetes_pod_node_name]
+  #   separator: ;
+  #   regex: ^(.*)$
+  #   targetLabel: nodename
+  #   replacement: $1
+  #   action: replace
+
+  ## Additional Endpoints
+  additionalEndpoints: []
+  # - port: oauth-metrics
+  #   path: /metrics
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
@@ -60,55 +120,49 @@ ingress:
   #      - chart-example.local
   #  secretName: chart-example-tls
 
-resources:
-  limits:
-    cpu: 100m
-    memory: 128Mi
-  requests:
-    cpu: 50m
-    memory: 64Mi
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+livenessProbe:
+  httpGet:
+    path: /api/health
+    port: 80
+  initialDelaySeconds: 5
+  timeoutSeconds: 2
+  periodSeconds: 10
+  successThreshold: 1
+  failureThreshold: 5
 
 # This section is for setting up atoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
-  # Autoscaling is enabled by default
   enabled: false
   minReplicas: 1
   maxReplicas: 10
   targetCPUUtilizationPercentage: 80
-  targetMemoryUtilizationPercentage: 80
-
-# Additional volumes on the output Deployment definition.
-volumes: []
-# - name: foo
-#   secret:
-#     secretName: mysecret
-#     optional: false
-
-# Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
+  # targetMemoryUtilizationPercentage: 80
 
 lambdaApi:
-  # Additional rpc container environment variables
-  # Values can be either variable values or `valueFrom` yaml
-  extraEnv:
-    # Options are: "release", "debug" and "test"
-    environment: release
+  # Enable debug logging
+  debug: false
 
-    # Options are: "DEBUG", "INFO", "WARN" and "ERROR"
-    logLevel: "INFO"
+  # Gin staging (info, debug, release)
+  staging: release
 
-    # Allow insecure minecraft accounts to connect
-    allowInsecure: false
+  # Allow offline accounts to connect
+  insecure: false
 
-    # Database options
-    database:
-      address: ":6379"
-      username: ""
-      password: ""
-      database: 0
+  # Memcached instances
+  nodes: []
 
 nodeSelector: {}
 

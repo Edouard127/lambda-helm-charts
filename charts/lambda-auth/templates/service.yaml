@@ -4,9 +4,9 @@ metadata:
   name: {{ include "lambda-auth.fullname" . }}
   labels:
     {{- include "lambda-auth.labels" . | nindent 4 }}
-  {{- if .Values.serviceAnnotations }}
+  {{- with .Values.serviceAnnotations }}
   annotations:
-    {{- toYaml .Values.serviceAnnotations | nindent 4 }}
+    {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
 {{- if .Values.service.dualStack.enabled }}
