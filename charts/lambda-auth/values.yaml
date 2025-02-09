@@ -38,6 +38,10 @@ podAnnotations: {}
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 podLabels: {}
 
+# This is for setting Kubernetes Annotations to a Service.
+# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+serviceAnnotations: {}
+
 podSecurityContext: {}
   # fsGroup: 2000
 
