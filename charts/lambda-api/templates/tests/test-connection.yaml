@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "lambda-api.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "lambda-api.fullname" . }}/api/health']
   restartPolicy: Never

@@ -4,7 +4,16 @@ metadata:
   name: {{ include "lambda-api.fullname" . }}
   labels:
     {{- include "lambda-api.labels" . | nindent 4 }}
+  {{- if .Values.serviceAnnotations }}
+  annotations:
+    {{- toYaml .Values.serviceAnnotations | nindent 4 }}
+  {{- end }}
 spec:
+{{- if .Values.service.dualStack.enabled }}
+  ipFamilies: {{ toYaml .Values.service.dualStack.ipFamilies | nindent 4 }}
+  ipFamilyPolicy: {{ .Values.service.dualStack.ipFamilyPolicy }}
+{{- end}}
+
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
@@ -13,7 +22,3 @@ spec:
       name: http
   selector:
     {{- include "lambda-api.selectorLabels" . | nindent 4 }}
-  
-  {{- if .Values.service.extraServiceSpec }}
-  {{ toYaml .Values.service.extraServiceSpec | nindent 2 }}
-  {{- end }}

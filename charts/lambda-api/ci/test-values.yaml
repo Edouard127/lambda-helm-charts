@@ -1,0 +1,16 @@
+# Install memcached too, idk how to have multiple ct files in a single project
+# helm install my-release oci://registry-1.docker.io/bitnamicharts/memcached
+
+serviceMonitor:
+  enabled: true
+
+serviceAnnotations:
+  "aa": "bb"
+  "lambda/app": "lambda-auth"
+
+lambdaApi:
+  nodes:
+    - memcached.default.svc.cluster.local:11211
+
+image:
+  tag: "latest"

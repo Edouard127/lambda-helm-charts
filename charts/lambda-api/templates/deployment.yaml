@@ -31,41 +31,23 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["/app/main"]
+          args: ["-debug={{ .Values.lambdaApi.debug }}", "-staging={{ .Values.lambdaApi.staging }}", "-insecure={{ .Values.lambdaApi.insecure }}", "{{- join "," .Values.lambdaApi.nodes }}"]
           ports:
             - name: http
-              containerPort: {{ .Values.service.port }}
+              containerPort: 8080
               protocol: TCP
             - name: metrics
               containerPort: 9100
               protocol: TCP
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-          {{- with .Values.volumeMounts }}
-          volumeMounts:
+          {{- with .Values.livenessProbe }}
+          livenessProbe:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-
-          env:
-            - name: ENVIRONMENT
-              value: {{ .Values.lambdaApi.extraEnv.environment | squote }}
-            - name: LOG_LEVEL
-              value: {{ .Values.lambdaApi.extraEnv.logLevel | squote }}
-            - name: ALLOW_INSECURE
-              value: {{ .Values.lambdaApi.extraEnv.allowInsecure | squote }}
-            - name: DB_ADDR
-              value: {{ .Values.lambdaApi.extraEnv.database.address | squote }}
-            - name: DB_USERNAME
-              value: {{ .Values.lambdaApi.extraEnv.database.username | squote }}
-            - name: DB_PASSWORD
-              value: {{ .Values.lambdaApi.extraEnv.database.password | squote }}
-            - name: DB_INDEX
-              value: {{ .Values.lambdaApi.extraEnv.database.database | squote }}
-             
-          command: ["/app/main"]
-      {{- with .Values.volumes }}
-      volumes:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
