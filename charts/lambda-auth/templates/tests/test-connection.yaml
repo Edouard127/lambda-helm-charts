@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "lambda-auth.fullname" . }}-test-connection"
+  labels:
+    {{- include "lambda-auth.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: ping
+      image: busybox
+      command: ['nc']
+      args: ['-zv', '{{ include "lambda-auth.fullname" . }}', '{{ .Values.service.port }}']
+    - name: metrics
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "lambda-auth.fullname" . }}:{{ .Values.service.metricsPort }}/metrics']
+  restartPolicy: Never
