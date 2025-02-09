@@ -2,6 +2,7 @@ apiVersion: v2
 name: lambda-auth
 description: A Helm chart for the Lambda Auth server
 home: https://github.com/Edouard127/lambda-auth
+icon: https://raw.githubusercontent.com/Edouard127/lambda-helm-charts/refs/heads/gh-pages/logo.png
 keywords:
   - lambda-client
   - lambda client
