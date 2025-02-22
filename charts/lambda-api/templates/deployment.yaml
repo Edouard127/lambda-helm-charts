@@ -33,6 +33,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["/app/main"]
           args: ["-debug={{ .Values.lambdaApi.debug }}", "-staging={{ .Values.lambdaApi.staging }}", "-insecure={{ .Values.lambdaApi.insecure }}", "{{- join "," .Values.lambdaApi.nodes }}"]
+          envFrom:
+            - secretRef:
+                name: {{ include "lambda-api.fullname" . }}-secret
           ports:
             - name: http
               containerPort: 8080
