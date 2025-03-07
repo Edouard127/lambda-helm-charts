@@ -158,8 +158,8 @@ lambdaApi:
   # Gin staging (info, debug, release)
   staging: release
 
-  # Allow offline accounts to connect
-  insecure: false
+  # Run the authentication in online-mode
+  online: true
 
   # Memcached instances
   nodes: []

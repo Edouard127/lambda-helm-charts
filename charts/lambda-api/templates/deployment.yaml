@@ -32,7 +32,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["/app/main"]
-          args: ["-debug={{ .Values.lambdaApi.debug }}", "-staging={{ .Values.lambdaApi.staging }}", "-insecure={{ .Values.lambdaApi.insecure }}", "{{- join "," .Values.lambdaApi.nodes }}"]
+          args: ["--debug={{ .Values.lambdaApi.debug }}", "--staging={{ .Values.lambdaApi.staging }}", "--online={{ .Values.lambdaApi.online }}", "--nodes={{- join "," .Values.lambdaApi.nodes }}"]
           envFrom:
             - secretRef:
                 name: {{ include "lambda-api.fullname" . }}-secret

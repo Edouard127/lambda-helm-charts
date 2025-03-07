@@ -9,6 +9,8 @@ serviceAnnotations:
   "lambda/app": "lambda-auth"
 
 lambdaApi:
+  debug: true
+  staging: debug
   nodes:
     - memcached.default.svc.cluster.local:11211
 
