@@ -3,6 +3,28 @@ entries:
   lambda-api:
   - apiVersion: v2
     appVersion: 1.1.0
+    created: "2025-03-17T22:56:55.569803387Z"
+    description: A Helm chart for the Lambda Client Web API
+    digest: 4cecc0359ef31a483634fdd25c3f14e56d7debbf8972f4cc7dbd1e0f745d223c
+    home: https://github.com/Edouard127/lambda-api
+    icon: https://raw.githubusercontent.com/Edouard127/lambda-helm-charts/refs/heads/gh-pages/logo.png
+    keywords:
+    - lambda-client
+    - lambda client
+    - minecraft
+    - anarchy
+    maintainers:
+    - email: 46357922+Edouard127@users.noreply.github.com
+      name: Edouard127
+    name: lambda-api
+    sources:
+    - https://github.com/Edouard127/lambda-helm-charts
+    type: application
+    urls:
+    - https://github.com/Edouard127/lambda-helm-charts/releases/download/lambda-api-1.0.4/lambda-api-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v2
+    appVersion: 1.1.0
     created: "2025-03-07T02:17:07.877562025Z"
     description: A Helm chart for the Lambda Client Web API
     digest: 5f948a44de79878ff0ea26ffe844059c1eb113ae2166e694bc26ca7ca70c19b5
@@ -110,4 +132,4 @@ entries:
     urls:
     - https://github.com/Edouard127/lambda-helm-charts/releases/download/lambda-auth-1.0.0/lambda-auth-1.0.0.tgz
     version: 1.0.0
-generated: "2025-03-07T02:17:07.877577314Z"
+generated: "2025-03-17T22:56:55.569824917Z"
