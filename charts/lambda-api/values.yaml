@@ -152,17 +152,14 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 lambdaApi:
-  # Enable debug logging
-  debug: false
-
-  # Gin staging (info, debug, release)
-  staging: release
-
-  # Run the authentication in online-mode
+  # Online-mode authentication
   online: true
 
-  # Memcached instances
-  nodes: []
+  # Enable debug log output
+  debug: false
+
+  # Endpoint of the standalone redis instance
+  redis: ""
 
 nodeSelector: {}
 

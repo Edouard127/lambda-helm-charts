@@ -32,10 +32,11 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["/app/main"]
-          args: ["--debug={{ .Values.lambdaApi.debug }}", "--staging={{ .Values.lambdaApi.staging }}", "--online={{ .Values.lambdaApi.online }}", "--nodes={{- join "," .Values.lambdaApi.nodes }}"]
-          envFrom:
-            - secretRef:
-                name: {{ include "lambda-api.fullname" . }}-secret
+          args: ["--online={{ .Values.lambdaApi.online }}", "--debug={{ .Values.lambdaApi.debug }}", "--redis={{ .Values.lambdaApi.redis }}"]
+          volumeMounts:
+            - mountPath: "/app/key"
+              name: id-rsa
+              readOnly: true
           ports:
             - name: http
               containerPort: 8080
@@ -51,6 +52,10 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+      volumes:
+        - name: id-rsa
+          secret:
+            secretName: {{ include "lambda-api.fullname" . }}-rsa
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
